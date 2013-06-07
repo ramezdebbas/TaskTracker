@@ -1,0 +1,28 @@
+﻿body {
+    color: #0a0a0a;
+}
+
+.showCategoryDescription, .showCategoryContent {
+    background-color: rgba(0,0,0,0.1);
+}
+
+
+.showCategoryOrder:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.win-backbutton {
+    border-color: #0a0a0a;
+    color: #0a0a0a;
+}
+
+    .win-backbutton:hover {
+        border-color: #0a0a0a;
+        background-color: rgba(0,0,0,0.1);
+    }
+
+#skydrivelogo {
+    background-image: url('/images/skyDrive.png');
+    background-position-x: -6px;
+    background-position-y: -50px;
+}

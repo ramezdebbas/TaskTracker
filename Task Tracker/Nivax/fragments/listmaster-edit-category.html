@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript">
+            (function () {
+                "use strict";
+                var page = WinJS.UI.Pages.define("/fragments/listmaster-edit-category.html", {
+                    ready: function (element, options) {
+                        var category = ListMaster.currentList.selectSingleNode("/list/categories/category[@id=" + options.categoryID + "]")
+
+                        var control = document.querySelector("#editListCategory-1");
+                        control.setAttribute("id", "editListCategory" + options.categoryID);
+                        if (selectedCategoryID == options.categoryID) {
+                            control.setAttribute("class", control.attributes.getNamedItem("class").value + " categorySelected");
+                        }
+
+                        var control = document.querySelector("#editCategorySection-1");
+                        control.setAttribute("id", "editCategorySection" + options.categoryID);
+
+                        var control = document.querySelector("#editCategoryOrder-1");
+                        control.setAttribute("id", "editCategoryOrder" + options.categoryID);
+                        control.addEventListener("click", doGotFocus, false);
+
+                        var control = document.querySelector("#imgEditCategoryOrder-1");
+                        control.setAttribute("id", "imgEditCategoryOrder" + options.categoryID);
+                        control.innerText = category.attributes.getNamedItem("order").value;
+
+                        var control = document.querySelector("#editCategoryTitle-1");
+                        control.setAttribute("id", "editCategoryTitle" + options.categoryID);
+                        control.style.width = "100%";
+                        control.value = category.attributes.getNamedItem("title").value;
+                        control.addEventListener("focus", doGotFocus, false);
+                        control.addEventListener("blur", doOnBlur, false);
+
+                        var control = document.querySelector("#editCategoryDescriptionVisibility-1");
+                        control.setAttribute("id", "editCategoryDescriptionVisibility" + options.categoryID);
+                        control.winControl.checked = (category.selectSingleNode("description").attributes.getNamedItem("visibility").value == "visible");
+
+                        var control = document.querySelector("#editCategoryDescription-1");
+                        control.setAttribute("id", "editCategoryDescription" + options.categoryID);
+                        if (category.selectSingleNode("description").attributes.getNamedItem("visibility").value == "hidden") {
+                            control.style.display = "none";
+                        }
+                        control.innerHTML = category.selectSingleNode("description").innerText;
+                        control.contentEditable = true;
+                        control.addEventListener("focus", doGotFocus, false);
+                        control.addEventListener("blur", doOnBlur, false);
+
+                        var control = document.querySelector("#editCategoryContent-1");
+                        control.setAttribute("id", "editCategoryContent" + options.categoryID);
+
+                        var control = document.querySelector("#editCategorySelected-1");
+                        control.setAttribute("id", "editCategorySelected" + options.categoryID);
+                        control.innerText = WinJS.UI._SELECTION_CHECKMARK
+                        if (selectedCategoryID == options.categoryID) {
+                            control.style.display = "block";
+                        }
+
+                        // now we need to process the item data for the category
+                        var categoryContent = document.getElementById("editCategoryContent" + options.categoryID);
+                        var listItems = ListMaster.currentList.selectNodes("/list/categories/category[@id=" + options.categoryID + "]/items/item");
+
+                        var itemSort = new Array();
+                        for (var i = 0; i < listItems.length; i++) {
+                            itemSort[(listItems[i].attributes.getNamedItem("order").value - 1)] = listItems[i].attributes.getNamedItem("id").value;
+                        }
+
+                        for (var i = 0; i < listItems.length; i++) {
+                            var itemID = itemSort[i];
+
+                            var div = document.createElement("div");
+                            div.setAttribute("id", "renderEditItem" + itemID);
+                            div.setAttribute("class", "renderEditItem");
+                            categoryContent.appendChild(div);
+
+                            var renderHost = document.querySelector("#renderEditItem" + itemID);
+                            WinJS.UI.Pages.render("/fragments/listmaster-edit-item.html", renderHost, {
+                                itemID: itemID
+                            }).done();
+                        }
+                    }
+                });
+            })();
+        </script>
+    </head>
+    <body>
+        <div id="editListCategory-1" class="editListCategory">
+            <div id="editCategorySection-1" class="sectionHeader editCategorySection">
+                <button id="editCategoryOrder-1" class='win-command editCategoryOrder' type='button' tabindex="-1">
+                    <span tabindex='-1' class='win-commandicon win-commandring'>
+                        <span tabindex='-1' class='win-commandimage' id="imgEditCategoryOrder-1"></span>
+                    </span>
+                </button>
+            </div>
+            <input type="text" class="editCategoryTitle" id="editCategoryTitle-1"/>
+            <div id="editCategoryDescriptionVisibility-1" class="editCategoryDescriptionVisibility" data-win-control="WinJS.UI.ToggleSwitch" data-win-options="{title: 'Description', labelOn: 'Show', labelOff: 'Hide', onchange: toggleDescription}"></div>
+            <div id="editCategorySelected-1" class="editCategorySelected"></div>
+            <div id="editCategoryDescription-1" class="editCategoryDescription editable"></div>
+            <div id="editCategoryContent-1" class="editCategoryContent"></div>
+        </div>
+    </body>
+</html>

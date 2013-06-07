@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <div id="unavailable">
+            <p>
+            Adding or Editing is unavailable when Task Tracker is snapped. Please unsnap the app to continue making changes to your lists, or press the home button to return to the Task Tracker home screen.
+            </p>
+        </div>
+        <div id="editPage">
+             <div id="editArea">
+                <div class="renderEditList"></div>
+            </div>
+            <div id="previewArea">
+                <div class="renderShowList"></div>
+            </div>
+        </div>
+        <div id="appBar" data-win-control="WinJS.UI.AppBar" data-win-options="{sticky:'true'}">
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnBold',label:'Bold',icon:'bold',section:'global',tooltip:'Bold Text'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnItalic',label:'Italic',icon:'italic',section:'global',tooltip:'Italic Text'}" />            
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnUnderline',label:'Underline',icon:'underline',section:'global',tooltip:'Underline Text'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnList',label:'Bullets',icon:'list',section:'global',tooltip:'Bulleted List'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnHome',label:'Home',icon:'home',section:'global',tooltip:'Task Tracker main page'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnSave',label:'Save',icon:'save',section:'global',tooltip:'Save Changes'}" />
+
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnAddCategory',label:'Category',icon:'add',section:'selection',tooltip:'New Category'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnDelCategory',label:'Category',icon:'remove',section:'selection',tooltip:'Remove Selected Category'}" />        
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnUp',label:'Up',icon:'up',section:'selection',tooltip:'Move Up'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnDown',label:'Down',icon:'url(images/downArrow.png)',section:'selection',tooltip:'Move Down'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnAddItem',label:'Item',icon:'add',section:'selection',tooltip:'New Item'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnDelItem',label:'Item',icon:'remove',section:'selection',tooltip:'Remove Selected Item'}" />
+        </div>
+
+        <div id="colorPicker" data-win-control="WinJS.UI.Flyout" aria-label="{color picker flyout}">
+            <table>
+                <tr>
+                    <td id="colorPalette" rowspan="4">
+
+                        <div class="paletteTile" style="background-color: Black;" onclick="selectPaletteTile('000000')"></div>
+                        <div class="paletteTile" style="background-color: Gray" onclick="selectPaletteTile('808080')"></div>
+                        <div class="paletteTile" style="background-color: LightGray" onclick="selectPaletteTile('d3d3d3')"></div>
+                        <div class="paletteTile" style="background-color: WhiteSmoke" onclick="selectPaletteTile('f5f5f5')"></div>
+
+                        <div class="paletteTile" style="background-color: Navy" onclick="selectPaletteTile('000080')"></div>
+                        <div class="paletteTile" style="background-color: Blue" onclick="selectPaletteTile('0000ff')"></div>
+                        <div class="paletteTile" style="background-color: RoyalBlue" onclick="selectPaletteTile('4961e1')"></div>
+                        <div class="paletteTile" style="background-color: Aqua" onclick="selectPaletteTile('00ffff')"></div>
+
+                        <div class="paletteTile" style="background-color: DarkGreen" onclick="selectPaletteTile('006400')"></div>
+                        <div class="paletteTile" style="background-color: Green" onclick="selectPaletteTile('008000')"></div>
+                        <div class="paletteTile" style="background-color: SeaGreen" onclick="selectPaletteTile('2e8b57')"></div>
+                        <div class="paletteTile" style="background-color: Lime" onclick="selectPaletteTile('00ff00')"></div>
+
+                        <div class="paletteTile" style="background-color: DarkRed" onclick="selectPaletteTile('8b0000')"></div>
+                        <div class="paletteTile" style="background-color: Red" onclick="selectPaletteTile('ff0000')"></div>
+                        <div class="paletteTile" style="background-color: Tomato" onclick="selectPaletteTile('ff6347')"></div>
+                        <div class="paletteTile" style="background-color: Pink" onclick="selectPaletteTile('ffc0cb')"></div>
+
+                        <div class="paletteTile" style="background-color: Brown" onclick="selectPaletteTile('a52a2a')"></div>
+                        <div class="paletteTile" style="background-color: DarkOrange" onclick="selectPaletteTile('ff8c00')"></div>
+                        <div class="paletteTile" style="background-color: Orange" onclick="selectPaletteTile('ffa500')"></div>
+                        <div class="paletteTile" style="background-color: Wheat" onclick="selectPaletteTile('f5deb3')"></div>
+
+                        <div class="paletteTile" style="background-color: GoldenRod" onclick="selectPaletteTile('daa520')"></div>
+                        <div class="paletteTile" style="background-color: Yellow" onclick="selectPaletteTile('ffff00')"></div>
+                        <div class="paletteTile" style="background-color: Khaki" onclick="selectPaletteTile('f0e68c')"></div>
+                        <div class="paletteTile" style="background-color: LightYellow" onclick="selectPaletteTile('ffffe0')"></div>
+
+                    </td>
+                    <td>Red</td><td><input id="color-Red" type="range" min="0" max="255" step="1" value="128" onchange="updateColorRange();"/></td><td id="color-Sample" rowspan="4"></td></tr>
+                <tr><td>Green</td><td><input id="color-Green" type="range" min="0" max="255" step="1" value="128" onchange="updateColorRange();"/></td></tr>
+                <tr><td>Blue</td><td><input id="color-Blue" type="range" min="0" max="255" step="1" value="128" onchange="updateColorRange();"/></td></tr>
+                <tr><td colspan="2">Color Value <input id="color-Hex" type="text" value="808080" onchange="updateColorText();"/></td></tr>
+            </table>
+            <button id="color-Select" type="button">Select Colour</button>
+            <input type="hidden" id="color-Previous" value="808080" />
+        </div>
+
+    </body>
+</html>

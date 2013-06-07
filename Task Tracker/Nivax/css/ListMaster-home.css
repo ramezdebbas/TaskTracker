@@ -1,0 +1,67 @@
+﻿body {
+}
+
+.listTileContainer {
+    width: 290px;
+    height: 150px;
+}
+
+.listTileDetail {
+    width: 100%;
+    height: 100%;
+}
+
+.listTileTitle {
+    height: 40px;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.8);
+    font-size: 26px;
+    overflow: hidden;
+    line-height: 40px;
+}
+
+.listTileDescription {
+    height: 70px;
+    width: 270px;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.listTileDark {
+    color: #0a0a0a;
+}
+
+.roamingList::before {
+    content: "\E12B";
+    position: absolute;
+    right: 10px;
+    bottom: 16px;
+    font-size: 18px;
+}
+
+.skydriveList {
+    background-image: url("/images/skyDrive.png");
+    background-position-x: -5px;
+    background-position-y: -5px;
+    position: absolute;
+    right: 10px;
+    bottom: 16px;
+    font-size: 18px;
+    width: 30px;
+    height: 30px;
+}
+
+#listSelectorView {
+    display: none;
+}
+
+#noLists {
+    font-size: 16pt;
+    display: none;
+}
+
+@media screen and (-ms-view-state: snapped) {
+    #rootGrid {
+        -ms-grid-rows: 20px 60px 1fr 20px;
+    }
+}

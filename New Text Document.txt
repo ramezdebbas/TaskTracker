@@ -1,0 +1,13 @@
+Task Tracker:
+Description:
+Having lot of tasks to do?? But not organized any of them?? But here is a solution to arrange your tasks. Now you can organize & categorize your to-do list with the help of this application. You can also share your files by using SkyDrive. 
+	
+Features:
+•	Plan your tasks & todos to achieve what you want to do.
+•	You can have the tracking the achievement of tasks.
+•	Share files with SkyDrive.
+•	Add Categories.
+•	Add Items.
+•	Edit, Delete the items or Categories.
+•	Fully Different User Interface Designed keeping in focus point of view of Niche (Target) Market.
+•	Fully Unique Branding (Unique Logo Designing & Graphics Designing)

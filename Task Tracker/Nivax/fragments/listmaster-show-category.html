@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript">
+            (function () {
+                "use strict";
+                var page = WinJS.UI.Pages.define("/fragments/listmaster-show-category.html", {
+                    ready: function (element, options) {
+                        var category = ListMaster.currentList.selectSingleNode("/list/categories/category[@id=" + options.categoryID + "]")
+
+                        var control = document.querySelector("#showListCategory-1");
+                        control.setAttribute("id", "showListCategory" + options.categoryID);
+                        if (options.listState != "expanded") {
+                            //this means that we are in a wizard state so we should show only the category that we are up to.
+                            //for now only the expanded state has been implemented
+                            if (options.startCategoryOrder == category.attributes.getNamedItem("order").value) {
+                                control.style.display = "block";
+                            } else {
+                                control.style.display = "none";
+                            }
+                        }
+
+                        var control = document.querySelector("#currentCategory" + options.listID);
+                        var div = document.createElement("div");
+                        div.setAttribute("id", "showCurrentCategoryOrder" + options.categoryID);
+                        div.setAttribute("class", "showCategoryOrder");
+                        div.innerText = category.attributes.getNamedItem("order").value;
+
+
+                        if (category.attributes.getNamedItem("order").value.valueOf() <= options.startCategoryOrder.valueOf()) {
+                            div.style.display = "block";
+                        } else {
+                            div.style.display = "none";
+                        }
+
+                        control.appendChild(div);
+                        var control = document.querySelector("#nextCategory" + options.listID);
+                        var div = document.createElement("div");
+                        div.setAttribute("id", "showNextCategoryOrder" + options.categoryID);
+                        div.setAttribute("class", "showCategoryOrder");
+                        div.innerText = category.attributes.getNamedItem("order").value;
+
+                        if (category.attributes.getNamedItem("order").value.valueOf() > options.startCategoryOrder.valueOf()) {
+                            div.style.display = "block";
+                        } else {
+                            div.style.display = "none";
+                        }
+
+                        control.appendChild(div);
+
+                        var control = document.querySelector("#showCategoryTitle-1");
+                        control.setAttribute("id", "showCategoryTitle" + options.categoryID);
+                        control.innerText = category.attributes.getNamedItem("title").value;
+                        if (options.previewMode) {
+                            if (options.textColor == "light") {
+                                control.style.color = "rgba(255,255,255,1)";
+                            } else {
+                                control.style.color = "rgba(0,0,0,1)";
+                            }
+                        }
+
+                        var control = document.querySelector("#showCategoryDescription-1");
+                        control.setAttribute("id", "showCategoryDescription" + options.categoryID);
+                        if (category.selectSingleNode("description").attributes.getNamedItem("visibility").value == "hidden") {
+                            control.style.display = "none";
+                        }
+                        control.innerHTML = category.selectSingleNode("description").innerText;
+                        if (options.previewMode) {
+                            if (options.textColor == "light") {
+                                control.style.backgroundColor = "rgba(255,255,255,0.8)";
+                            } else {
+                                control.style.backgroundColor = "rgba(0,0,0,0.1)";
+                            }
+                        }
+
+                        var control = document.querySelector("#showCategoryContent-1");
+                        control.setAttribute("id", "showCategoryContent" + options.categoryID);
+                        if (options.previewMode) {
+                            if (options.textColor == "light") {
+                                control.style.backgroundColor = "rgba(255,255,255,0.8)";
+                            } else {
+                                control.style.backgroundColor = "rgba(0,0,0,0.1)";
+                            }
+                        }
+
+                        // now we need to process the item data for the category
+                        var categoryContent = document.getElementById("showCategoryContent" + options.categoryID);
+                        var listItems = ListMaster.currentList.selectNodes("/list/categories/category[@id=" + options.categoryID + "]/items/item");
+
+                        var itemSort = new Array();
+                        for (var i = 0; i < listItems.length; i++) {
+                            itemSort[(listItems[i].attributes.getNamedItem("order").value - 1)] = listItems[i].attributes.getNamedItem("id").value;
+                        }
+
+                        for (var i = 0; i < listItems.length; i++) {
+                            var itemID = itemSort[i];
+
+                            var div = document.createElement("div");
+                            div.setAttribute("id", "renderShowItem" + itemID);
+                            div.setAttribute("class", "renderShowItem");
+                            categoryContent.appendChild(div);
+
+                            var renderHost = document.querySelector("#renderShowItem" + itemID);
+                            WinJS.UI.Pages.render("/fragments/listmaster-show-item.html", renderHost, {
+                                itemID: itemID,
+                                previewMode: options.previewMode
+                            }).done();
+                        }
+                    }
+                });
+            })();
+        </script>
+    </head>
+    <body>
+        <div class="showListCategory" id="showListCategory-1">
+            <div class="showCategoryTitle win-type-x-large" id="showCategoryTitle-1"></div>
+            <div class="showCategoryDescription" id="showCategoryDescription-1"></div>
+            <div class="showCategoryContent" id="showCategoryContent-1" ></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript">
+            (function () {
+                "use strict";
+                var page = WinJS.UI.Pages.define("/fragments/listmaster-edit-header.html", {
+                    ready: function (element, options) {
+                        var list = ListMaster.currentList.selectSingleNode("/list")
+
+                        var control = document.querySelector("#editListHeader-1");
+                        control.setAttribute("id", "editListHeader" + options.listID);
+
+                        var control = document.querySelector("#editListColorSettings-1");
+                        control.setAttribute("id", "editListColorSettings" + options.listID);
+
+                        var control = document.querySelector("#editListBgColor-1");
+                        control.setAttribute("id", "editListBgColor" + options.listID);
+                        control.addEventListener("click", showColorPicker, false);
+
+                        var control = document.querySelector("#editListBgSample-1");
+                        control.setAttribute("id", "editListBgSample" + options.listID);
+                        control.style.backgroundColor = list.attributes.getNamedItem("bgcolor").value;
+
+                        var control = document.querySelector("#editListTitle-1");
+                        control.setAttribute("id", "editListTitle" + options.listID);
+                        control.value = list.attributes.getNamedItem("title").value;
+                        control.style.width = "100%";
+                        control.addEventListener("focus", doGotFocus, false);
+                        control.addEventListener("blur", doOnBlur, false);
+
+                        var control = document.querySelector("#editListTextColor-1");
+                        control.setAttribute("id", "editListTextColor" + options.listID);
+                        control.winControl.checked = (list.attributes.getNamedItem("textcolor").value == "light");
+
+                        var control = document.querySelector("#editListDescriptionVisibility-1");
+                        control.setAttribute("id", "editListDescriptionVisibility" + options.listID);
+                        control.style.width = "100%";
+                        control.winControl.checked = (list.selectSingleNode("description").attributes.getNamedItem("visibility").value == "visible");
+
+                        var control = document.querySelector("#editListDescription-1");
+                        control.setAttribute("id", "editListDescription" + options.listID);
+                        if (list.selectSingleNode("description").attributes.getNamedItem("visibility").value == "hidden") {
+                            control.style.display = "none";
+                        }
+                        control.innerHTML = list.selectSingleNode("description").innerText;
+                        control.contentEditable = true;
+                        control.addEventListener("focus", doGotFocus, false);
+                        control.addEventListener("blur", doOnBlur, false);
+
+                        var control = document.querySelector("#editListFooter-1");
+                        control.setAttribute("id", "editListFooter" + options.listID);
+
+                        var control = document.querySelector("#editFooterTextVisibility-1");
+                        control.setAttribute("id", "editFooterTextVisibility" + options.listID);
+                        control.style.width = "100%";
+                        control.winControl.checked = (list.selectSingleNode("footertext").attributes.getNamedItem("visibility").value == "visible");
+
+                        var control = document.querySelector("#editFooterText-1");
+                        control.setAttribute("id", "editFooterText" + options.listID);
+                        control.value = list.selectSingleNode("footertext").innerText;
+                        control.style.width = "100%";
+                        control.addEventListener("focus", doGotFocus, false);
+                        control.addEventListener("blur", doOnBlur, false);
+
+                        // now we need to process the category data for the list
+                        var listContent = document.getElementById("editListContent-1")
+                        listContent.setAttribute("id", "editListContent" + options.listID);
+                        var listCategories = ListMaster.currentList.selectNodes("/list/categories/category");
+
+                        var catSort = new Array();
+                        for (var c = 0; c < listCategories.length; c++) {
+                            catSort[ (listCategories[c].attributes.getNamedItem("order").value - 1) ] = listCategories[c].attributes.getNamedItem("id").value;
+                        }
+
+                        for (var c = 0; c < listCategories.length; c++) {
+                            var categoryID = catSort[c];
+
+                            var div = document.createElement("div");
+                            div.setAttribute("id", "renderEditCategory" + categoryID);
+                            div.setAttribute("class", "renderEditCategory");
+                            listContent.appendChild(div);
+
+                            var renderHost = document.querySelector("#renderEditCategory" + categoryID);
+                            WinJS.UI.Pages.render("/fragments/listmaster-edit-category.html", renderHost, {
+                                categoryID: categoryID
+                            }).done()
+                        }
+                    }
+                });
+            })();
+        </script>
+    </head>
+    <body>
+        <div class="editListHeader" id="editListHeader-1">
+            <input type="text" id="editListTitle-1" class="editListTitle" />
+            <div id="editListColorSettings-1" class="editListColorSettings">
+                <div id="editListBgSample-1" class="editListBgSample"></div>
+                <button class="editListBgColor" id="editListBgColor-1" tabindex="-1">Choose Color</button>
+                <div class="editListTextColor" id="editListTextColor-1" data-win-control="WinJS.UI.ToggleSwitch" data-win-options="{title: 'Title Text', labelOn: 'Light', labelOff: 'Dark', onchange: toggleTitleText}"></div>
+            </div>
+            <div class="editListDescriptionVisibility" id="editListDescriptionVisibility-1" data-win-control="WinJS.UI.ToggleSwitch" data-win-options="{title: 'Description', labelOn: 'Show', labelOff: 'Hide', onchange: toggleDescription}"></div>
+            <div id="editListDescription-1" class="editListDescription editable"></div>
+        </div>
+        <div class="editListContent" id="editListContent-1"></div>
+        <div class="editListFooter" id="editListFooter-1">
+            <div class="editFooterTextVisibility" id="editFooterTextVisibility-1" data-win-control="WinJS.UI.ToggleSwitch" data-win-options="{title: 'Footer', labelOn: 'Show', labelOff: 'Hide', onchange: toggleFooterText}"></div>
+            <input type="text" class="editFooterText editable" id="editFooterText-1" />
+        </div>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+﻿<!doctype HTML>
+<html>
+    <head>
+        <title>Help settings flyout</title>
+        <script src="/js/listmaster-accounts.js"></script>
+    </head>
+    <body>
+        <!-- BEGINSETTINGFLYOUT -->
+        <div data-win-control="WinJS.UI.SettingsFlyout" id="applicationOptionsFlyout" aria-label="Account settings flyout" data-win-options="{settingsCommandId:'accounts'}">
+            <div class="win-ui-dark win-header" style="background-color:rgb(0,150,169)">
+               <button type="button" onclick="WinJS.UI.SettingsFlyout.show()" class="win-backbutton"></button>
+               <div class="win-label">Accounts</div>
+               <img src="/images/smalllogo.png" style="position: absolute; right: 40px;"/>
+            </div>
+            <div class="win-content ">
+                <div class="win-settings-section">
+                    <div id="connectSkyDrive" data-win-control="WinJS.UI.ToggleSwitch" data-win-options="{title: 'Connect to SkyDrive', labelOn: 'Yes', labelOff: 'No', onchange: toggleSkyDrive}"></div>
+                    <span id="currentUser"></span>
+                    <button type="button" id="btnSignIn">Sign In</button>
+                    <button type="button" id="btnSignOut">Sign Out</button>
+                    <img src="/images/logo.png" id="currentUserImg" />
+                    <div id="winlive"><progress id="accountAction" class="win-ring"></progress><div id=accountStatus>Signing out</div></div>
+                </div>
+            </div>
+        </div>
+        <!-- ENDSETTINGSFLYOUT -->
+    </body>
+</html>

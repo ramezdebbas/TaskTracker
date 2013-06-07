@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>08fd2c8f-32bc-4dd4-9707-9e9787b3987f</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0'">
+    <VisualStudioVersion>11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).props" />
+  <PropertyGroup>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <TargetPlatformVersion>8.0</TargetPlatformVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <PackageCertificateKeyFile>Nivax_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>CE3894C295466EB9B6D3EBAF9585491BC37DEED6</PackageCertificateThumbprint>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppxManifest Include="package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="Nivax_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.WinJS.1.0, Version=1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\colorPicker.css" />
+    <Content Include="css\default.css" />
+    <Content Include="css\ListMaster-edit.css" />
+    <Content Include="css\ListMaster-home.css" />
+    <Content Include="css\ListMaster-print.css" />
+    <Content Include="css\ListMaster-show-dark.css" />
+    <Content Include="css\ListMaster-show-light.css" />
+    <Content Include="css\ListMaster-show.css" />
+    <Content Include="data\app-options.xml" />
+    <Content Include="data\list-blank.xml" />
+    <Content Include="Default.html" />
+    <Content Include="fragments\header.html" />
+    <Content Include="fragments\listmaster-edit-category.html" />
+    <Content Include="fragments\listmaster-edit-header.html" />
+    <Content Include="fragments\listmaster-edit-item.html" />
+    <Content Include="fragments\listmaster-show-category.html" />
+    <Content Include="fragments\listmaster-show-header.html" />
+    <Content Include="fragments\listmaster-show-item.html" />
+    <Content Include="images\downArrow.png" />
+    <Content Include="images\icon.targetsize-16.PNG" />
+    <Content Include="images\icon.targetsize-256.png" />
+    <Content Include="images\icon.targetsize-32.PNG" />
+    <Content Include="images\icon.targetsize-48.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\logo_dark.png" />
+    <Content Include="images\skyDrive.png" />
+    <Content Include="images\smalllogo.png" />
+    <Content Include="images\smalllogo_dark.png" />
+    <Content Include="images\splashscreen.png" />
+    <Content Include="images\splashscreen_dark.png" />
+    <Content Include="images\squareTile.targetsize-16.PNG" />
+    <Content Include="images\squareTile.targetsize-256.png" />
+    <Content Include="images\squareTile.targetsize-32.PNG" />
+    <Content Include="images\squareTile.targetsize-48.png" />
+    <Content Include="images\storelogo.png" />
+    <Content Include="images\updownArrowDark.png" />
+    <Content Include="images\updownArrowLight.png" />
+    <Content Include="images\WideLogo.png" />
+    <Content Include="js\default.js" />
+    <Content Include="js\listmaster-about.js" />
+    <Content Include="js\listmaster-accounts.js" />
+    <Content Include="js\listmaster-edit.js" />
+    <Content Include="js\listmaster-home.js" />
+    <Content Include="js\listmaster-settings.js" />
+    <Content Include="js\ListMaster-show.js" />
+    <Content Include="LiveSDKHTML\Images\SignInControl\Hotmail_Black.png" />
+    <Content Include="LiveSDKHTML\Images\SignInControl\Hotmail_White.png" />
+    <Content Include="LiveSDKHTML\Images\SignInControl\Messenger_Black.png" />
+    <Content Include="LiveSDKHTML\Images\SignInControl\Messenger_White.png" />
+    <Content Include="LiveSDKHTML\Images\SignInControl\SkyDrive_Black.png" />
+    <Content Include="LiveSDKHTML\Images\SignInControl\SkyDrive_White.png" />
+    <Content Include="LiveSDKHTML\Images\SignInControl\Windows_Black.png" />
+    <Content Include="LiveSDKHTML\Images\SignInControl\Windows_White.png" />
+    <Content Include="LiveSDKHTML\js\wl.js" />
+    <Content Include="pages\ListMaster-about.html" />
+    <Content Include="pages\ListMaster-accounts.html" />
+    <Content Include="pages\ListMaster-edit.html" />
+    <Content Include="pages\ListMaster-home.html" />
+    <Content Include="pages\ListMaster-settings.html" />
+    <Content Include="pages\ListMaster-show.html" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
+  <!-- To modify your build process, add your task inside one of the targets below then uncomment
+       that target and the DisableFastUpToDateCheck PropertyGroup. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <PropertyGroup>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+  </PropertyGroup>
+  -->
+</Project>

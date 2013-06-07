@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <div id="homePage">
+            <div id="noLists" style="display: none;">
+                <p>It's quite lonely here.</p>
+                <p>Why not create your first list by pressing the add button?</p>
+            </div>
+            <div id="listSelectorView" data-win-control="WinJS.UI.ListView" 
+                data-win-options="{itemTemplate: listSelectorTemplate, selectionMode: 'single' }">
+            </div>
+        </div>
+        <div id="appBar" data-win-control="WinJS.UI.AppBar">
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnRoam',label:'SkyDrive',icon:'url(images/skyDrive.png)',section:'selection',tooltip:'Toggle SkyDrive'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnShow',label:'Show',icon:'view',section:'selection',tooltip:'View List'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnEdit',label:'Edit',icon:'edit',section:'selection',tooltip:'Edit List'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnDelete',label:'Delete',icon:'delete',section:'selection',tooltip:'Delete List'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnPin',label:'Pin to Start',icon:'pin',section:'selection',tooltip:'Pin List to Start Screen'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnDownload',label:'Download',icon:'download',section:'global',tooltip:'Download all from SkyDrive'}" />
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'btnAdd',label:'Add',icon:'add',section:'global',tooltip:'New List'}" />
+        </div>
+    </body>
+</html>

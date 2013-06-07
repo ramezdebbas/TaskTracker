@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<list id="-1" title="List Title" bgcolor="#000000" visibility="private" class="general" textcolor="light" state="expanded" showcategory="1" version="0">
+  <description visibility="hidden">A description for your list</description>
+  <footertext visibility="visible">Text for the footer</footertext>
+  <categories>
+    <category id="-1" title="Category Title" order="1" visibility="visible">
+      <description visibility="hidden">A description for the category</description>
+      <items>
+        <item id="-1" title="Item Title" order="1">
+          <description visibility="hidden">A description for the item</description>
+          <states>
+            <state order="1" checked="false"></state>
+          </states>
+        </item>
+      </items>
+    </category>
+  </categories>
+</list>

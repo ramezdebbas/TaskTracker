@@ -1,0 +1,274 @@
+﻿body {
+    background-color: rgb(0,150,169);
+}
+
+#appBar {
+    /*background-color: rgba(0,0,0,0.4);*/
+    background-color: #005a65;
+}
+::selection {
+    background-color: #005a65;
+}
+.home::before {
+    content: "\E10F";
+}
+.expand::before {
+    content: url(/images/updownArrowLight.png);
+}
+input[type=range]::-ms-fill-lower {
+    background-color: rgba(0,0,0,0.4);
+}
+input[type=range]:hover::-ms-fill-lower {
+    background-color: rgba(0,0,0,0.4);
+}
+input[type=range]:active::-ms-fill-lower {
+    background-color: rgba(0,0,0,0.4);
+}
+.win-listview.win-selectionstylefilled .win-container.win-selected:hover {
+    background-color: darkorange;
+}
+.win-listview:not(.win-selectionstylefilled) .win-container.win-selected .win-selectionborder {
+    border-color: darkorange;
+}
+.win-listview.win-selectionstylefilled .win-selected .win-selectionbackground {
+    background-color: darkorange;
+}
+.win-ui-light .win-selectionhint {
+    color: darkorange;
+}
+.win-listview:not(.win-selectionstylefilled) .win-selectioncheckmarkbackground {
+    border-top-color: darkorange;
+    border-right-color: darkorange;
+}
+.win-listview:not(.win-selectionstylefilled) .win-container.win-selected:hover .win-selectioncheckmarkbackground {
+    border-top-color: darkorange;
+    border-right-color: darkorange;
+}
+.win-listview:not(.win-selectionstylefilled) .win-container.win-selected:hover .win-selectionborder {
+    border-color: darkorange;
+}
+.win-listview.win-rtl:not(.win-selectionstylefilled) .win-selectioncheckmarkbackground {
+    border-left-color: darkorange;
+}
+.win-listview.win-selectionstylefilled .win-selected:hover .win-selectionbackground {
+    background-color: darkorange;
+}
+#rootProgress {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 5px;
+    height: 8px;
+    z-index: 200;
+    color: #ffffff;
+    display: none;
+}
+#rootGrid
+{
+    width: 100%;
+    height: 100%;
+    display: -ms-grid;
+    -ms-grid-columns: 100px 1fr 100px;
+    -ms-grid-rows: 20px 100px 1fr 130px;
+}
+
+#header
+{
+    display: -ms-grid;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    -ms-grid-columns: 100px 1fr 150px;
+    -ms-grid-rows: 1fr;
+}
+
+#content
+{
+    width: 100%;
+    height: 100%;
+    padding-right:20px;
+    padding-bottom:20px;
+    overflow:auto;
+    display:-ms-grid;
+    -ms-grid-columns:1fr;
+    -ms-grid-rows: auto;
+    -ms-grid-column: 2;
+    -ms-grid-row: 3;
+}
+
+#contentHost {
+    width: 100%;
+    height: 100%;
+}
+
+#footer {
+    -ms-grid-column: 2;
+    -ms-grid-row: 4;
+    padding-top: 60px;
+}
+
+#btnBack {
+    -ms-grid-column: 1;
+    margin-left: 30px;
+    margin-top: 15px;
+    display: none;
+}
+
+#btnExpand {
+    -ms-grid-column: 3;
+    margin-left: 30px;
+    margin-top: 15px;
+    display: none;
+}
+
+#btnSnapHome {
+    -ms-grid-column: 1;
+    margin-left: 10px;
+    margin-top: 2px;
+    display: none;
+}
+
+#pageTitle {
+    -ms-grid-column: 2;
+}
+
+#skydrive {
+    -ms-grid-column: 3;
+    color: inherit;
+    font-size: 11pt;
+    line-height: 11pt;
+}
+
+#progressSignIn {
+    color: inherit;
+    margin-right: 5px;
+    float: left;
+}
+
+#skydrivelogo {
+    display: none;
+    width: 30px;
+    height: 30px;
+    background-image: url('/images/skyDrive.png');
+    background-position-x: -6px;
+    background-position-y: -10px;
+    float: left;
+    margin-right: 5px;
+}
+
+#skydrivestatus {
+    text-align: center;
+    width: 100px;
+    float: left;
+    margin-top: 5px;
+}
+
+#winlive {
+    display: none;
+    float: left;
+    margin-left: 20px;
+}
+
+#accountAction {
+    color: inherit;
+    float: left;
+    margin-right: 10px;
+}
+
+#accountStatus {
+    float: left;
+}
+#currentUser {
+    font-weight: bold;
+    padding-bottom: 10px;
+    display: block;
+}
+
+#currentUserImg {
+    width: 40px;
+    height: 40px;
+    float: left;
+}
+
+#btnSignIn, #btnSignOut {
+    float: left;
+}
+
+.editable {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 4px;
+    background-color: rgba(255,255,255,0.8);
+    color: #000000;
+}
+
+.editable:hover {
+    background-color: rgba(255,255,255,0.87);
+}
+.editable:focus {
+    background-color: rgb(255,255,255);
+}
+
+@media screen and (-ms-view-state: fullscreen-landscape) {
+}
+
+@media screen and (-ms-view-state: filled) {
+}
+
+@media screen and (-ms-view-state: snapped) {
+    #btnBack {
+        display: none;
+    }
+    #rootGrid {
+        -ms-grid-columns: 10px 1fr 10px;
+        -ms-grid-rows: 20px 60px 1fr 100px;
+    }
+    #header {
+        -ms-grid-columns: 20px 1fr 10px;
+    }
+    #appBar {
+        display: none;
+    }
+    #skydrive {
+        display: none;
+    }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    #rootGrid {
+        -ms-grid-columns: 20px 1fr 20px;
+    }
+}
+
+#colorPicker input[type=range] {
+    margin: 0;
+    padding: 10px;
+    width: 160px;
+}
+
+#color-Hex {
+    width: 80px;
+    margin-left: 10px;
+}
+
+#color-Sample {
+    border: 2px solid white;
+    width: 60px;
+    background-color: #808080;
+}
+
+#colorPicker button {
+    float: right;
+    margin-top: 10px;
+}
+
+#colorPalette {
+    width: 100px;
+}
+
+.paletteTile {
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    float: left;
+} 

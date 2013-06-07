@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript">
+            (function () {
+                "use strict";
+                var page = WinJS.UI.Pages.define("/fragments/listmaster-show-header.html", {
+                    ready: function (element, options) {
+                        var list = ListMaster.currentList.selectSingleNode("/list")
+                        var textColor = list.attributes.getNamedItem("textcolor").value;
+                        if (options.previewMode) {
+                            if (textColor == "light") {
+                                var listcolor = "#ffffff";
+                            } else {
+                                var listcolor = "#0a0a0a";
+                            }
+                        }
+
+                        var control = document.querySelector("#showListHeader-1");
+                        control.setAttribute("id", "showListHeader" + options.listID);
+                        control.style.color = listcolor;
+
+                        var control = document.querySelector("#showListTitle-1");
+                        control.setAttribute("id", "showListTitle" + options.listID);
+                        control.innerText = list.attributes.getNamedItem("title").value;
+
+                        var control = document.querySelector("#showListDescription-1");
+                        control.setAttribute("id", "showListDescription" + options.listID);
+                        if (list.selectSingleNode("description").attributes.getNamedItem("visibility").value == "hidden") {
+                            control.style.display = "none";
+                        }
+                        control.innerHTML = list.selectSingleNode("description").innerText;
+
+                        var control = document.querySelector("#showListFooter-1");
+                        control.setAttribute("id", "showListFooter" + options.listID);
+                        control.style.color = listcolor;
+
+                        var control = document.querySelector("#showFooterText-1");
+                        control.setAttribute("id", "showFooterText" + options.listID);
+                        if (list.selectSingleNode("footertext").attributes.getNamedItem("visibility").value == "hidden") {
+                            control.style.display = "none";
+                        }
+                        control.innerText = list.selectSingleNode("footertext").innerText;
+
+                        var control = document.querySelector("#currentCategory-1");
+                        control.setAttribute("id", "currentCategory" + options.listID);
+                        control.style.color = listcolor;
+
+                        var control = document.querySelector("#nextCategory-1");
+                        control.setAttribute("id", "nextCategory" + options.listID);
+                        control.style.color = listcolor;
+
+                        // now we need to process the category data for the list
+                        var listContent = document.querySelector("#showListContent-1")
+                        listContent.setAttribute("id", "showListContent" + options.listID);
+                        listContent.style.color = listcolor;
+                        var listCategories = ListMaster.currentList.selectNodes("/list/categories/category");
+
+                        var catSort = new Array();
+                        for (var c = 0; c < listCategories.length; c++) {
+                            catSort[(listCategories[c].attributes.getNamedItem("order").value - 1)] = listCategories[c].attributes.getNamedItem("id").value;
+                        }
+
+                        for (var c = 0; c < listCategories.length; c++) {
+                            var categoryID = catSort[c];
+
+                            var div = document.createElement("div");
+                            div.setAttribute("id", "renderShowCategory" + categoryID);
+                            div.setAttribute("class", "renderShowCategory");
+                            listContent.appendChild(div);
+
+                            var renderHost = document.querySelector("#renderShowCategory" + categoryID);
+                            WinJS.UI.Pages.render("/fragments/listmaster-show-category.html", renderHost, {
+                                categoryID: categoryID,
+                                listID: options.listID,
+                                startCategoryOrder: options.startCategoryOrder,
+                                textColor: textColor,
+                                listState: options.listState,
+                                previewMode: options.previewMode
+                            }).done()
+                        }
+                    }
+                });
+            })();
+        </script>
+    </head>
+    <body>
+        <div class="showListHeader" id="showListHeader-1">
+            <div class="showListTitle win-type-xx-large" id="showListTitle-1"></div>
+            <div class="showListDescription" id="showListDescription-1"></div>
+        </div>
+        <div class="showListContent" id="showListContent-1">
+            <div class="currentCategory" id="currentCategory-1"></div>
+            <div class="nextCategory" id="nextCategory-1"></div>
+        </div>
+        <div class="showListFooter" id="showListFooter-1">
+            <div class="showFooterText win-type-small" id="showFooterText-1"></div>
+        </div>
+    </body>
+</html>

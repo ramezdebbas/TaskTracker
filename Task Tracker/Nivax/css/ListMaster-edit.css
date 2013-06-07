@@ -1,0 +1,366 @@
+﻿#btnBack {
+    display: block;
+}
+#btnExpand {
+    display: none;
+}
+#unavailable {
+    display: none;
+}
+#editPage {
+    width: 100%;
+    height: 100%;
+    display: -ms-grid;
+    -ms-grid-columns: 1fr 30px 320px;
+    -ms-grid-rows: 1fr;
+}
+#editArea {
+    -ms-grid-column: 1;
+    display: -ms-grid;
+    -ms-grid-columns: 20px 1fr 20px;
+    -ms-grid-rows: 10px 1fr 10px;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(255,255,255,0.2); 
+}
+#previewArea {
+    -ms-grid-column: 3;
+    width: 100%;
+    overflow: hidden;
+}
+.renderShowList {
+    width: 100%;
+    height: 100%;
+    display: -ms-grid;
+    -ms-grid-columns: 10px 1fr 10px;
+    -ms-grid-rows: 60px 1fr 40px;
+}
+.renderEditList {
+    -ms-grid-column: 2;
+    -ms-grid-row: 2;
+    display: -ms-grid;
+
+    -ms-grid-columns: 10px 1fr 10px ;
+    -ms-grid-rows: auto auto 4px auto 4px auto;
+
+}
+.sectionHeader {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* The classes used in the list edit area */
+.editListHeader {
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+    display: -ms-grid;
+    -ms-grid-columns: 1fr 10px 320px 10px 206px 
+}
+
+.editListTitle {
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+}
+
+.editListColorSettings {
+    -ms-grid-column: 3;
+    -ms-grid-row: 1;
+}
+
+.editListBgSample {
+    border: 2px solid #ffffff;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 8px;
+}
+
+.editListBgColor {
+    margin-top: 10px;
+}
+
+.editListTextColor {
+    float: right;
+}
+
+.editListDescriptionVisibility {
+    -ms-grid-column: 5;
+    -ms-grid-row: 1;
+}
+
+.editListDescription {
+    -ms-grid-column: 1;
+    -ms-grid-row: 2;
+    -ms-grid-column-span: 5;
+    height: 200px;
+}
+
+.editListContent {
+    -ms-grid-column: 2;
+    -ms-grid-row: 4;
+}
+
+.editListCategory {
+    display: -ms-grid;
+    -ms-grid-columns: 1px 100px 10px 1fr 10px 168px 40px 8px;
+    -ms-grid-rows: 4px auto auto auto 4px;
+}
+
+.editCategorySection {
+    -ms-grid-column: 2;
+    -ms-grid-row-span: 3;
+    -ms-grid-row: 2;
+    background-color: darkorange;
+}
+
+.editCategoryOrder {
+}
+
+.editCategoryTitle {
+    -ms-grid-column: 4;
+    -ms-grid-row: 2;
+}
+
+.editCategoryDescriptionVisibility {
+    -ms-grid-column: 6;
+    -ms-grid-row: 2;
+}
+
+.editCategoryDescription {
+    -ms-grid-column: 4;
+    -ms-grid-row: 3;
+    -ms-grid-column-span: 3;
+    height: 200px;
+    width: 100%;
+}
+
+.editCategorySelected {
+    -ms-grid-column: 7;
+    -ms-grid-row: 2;
+    text-align: right;
+    display: none;
+}
+
+.editCategoryContent {
+    -ms-grid-column: 4;
+    -ms-grid-row: 4;
+    -ms-grid-column-span: 4;
+}
+
+.editListItem {
+    display: -ms-grid;
+    -ms-grid-columns: 1px 100px 10px 1fr 10px 160px 40px 8px;
+    -ms-grid-rows: 4px auto auto auto 4px;
+}
+
+.editItemSection {
+    -ms-grid-column: 2;
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 3;
+    background-color: darkgreen;
+}
+
+.editItemOrder {
+}
+
+.editItemTitle {
+    -ms-grid-column: 4;
+    -ms-grid-row: 2;
+    width: 100%;
+}
+
+.editItemDescriptionVisibility {
+    -ms-grid-column: 6;
+    -ms-grid-row: 2;
+}
+
+.editItemDescription {
+    -ms-grid-column: 4;
+    -ms-grid-row: 3;
+    -ms-grid-column-span: 3;
+    height: 200px;
+    width: 100%;
+}
+
+.editItemSelected {
+    -ms-grid-column: 7;
+    -ms-grid-row: 2;
+    text-align: right;
+    display: none;
+}
+
+.editItemContent {
+    -ms-grid-column: 4;
+    -ms-grid-row: 4;
+}
+
+.editListStates {
+}
+
+.editListState {
+}
+
+.editListFooter {
+    display: -ms-grid;
+    -ms-grid-row: 6;
+    -ms-grid-column: 2;
+    -ms-grid-columns: 1px 180px 1fr 8px;
+    -ms-grid-rows: auto;
+}
+
+.editFooterTextVisibility {
+    -ms-grid-column: 2;
+}
+
+.editFooterText {
+    -ms-grid-column: 3;
+}
+
+.categorySelected {
+    background-color: darkorange;
+}
+
+.itemSelected {
+    background-color: darkgreen;
+}
+
+/* The classes used in the list preview area */
+
+.showListHeader {
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+}
+
+.showListTitle {
+    font-size: 20pt;
+}
+
+.showListDescription {
+}
+
+.showListContent {
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    overflow: auto;
+    display: -ms-grid;
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: 40px 1fr 40px;
+}
+
+.currentCategory {
+    -ms-grid-row: 1;
+    display: none;
+}
+
+.nextCategory {
+    -ms-grid-row: 3;
+    display: none;
+}
+
+.renderShowCategory {
+    /*-ms-grid-row: 2;*/
+}
+
+.showListCategory {
+    color: #000000;
+    padding: 5px;
+}
+
+.showCategoryOrder {
+    border: 2px solid;
+    width: 20px;
+    height: 20px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 8px;
+    float: right;
+}
+
+    .showCategoryOrder:hover {
+        background-color: rgba(255,255,255, 0.4);
+    }
+
+.showCategoryTitle {
+    font-size: 12pt;
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+
+.showCategoryDescription {
+    padding: 5px;
+}
+
+.showCategoryContent {
+    padding: 5px;
+}
+
+.showListItem {
+    display: -ms-grid;
+    -ms-grid-columns: 1fr;
+    -ms-grid-rows: auto auto;
+    padding: 5px;
+}
+
+.showItemTitle {
+    -ms-grid-row: 1;
+    float: left;
+    font-size: 12pt;
+    font-weight: normal;
+}
+
+.showItemDescription {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+}
+
+.showItemContent {
+    -ms-grid-row: 1;
+}
+
+.showItemStates {
+}
+
+.showListState {
+    float: right;
+}
+
+.showListFooter {
+    -ms-grid-column: 2;
+    -ms-grid-row: 3;
+}
+
+.showFooterText {
+    margin-top: 5px;
+}
+
+@media screen and (-ms-view-state: snapped) {
+    #unavailable {
+        display: block;
+        margin-top: 20px;
+    }
+    #editPage, #btnBack {
+        display: none;
+    }
+    #btnSnapHome {
+        display: block;
+    }
+    #pageTitle {
+        margin-left: 40px;
+    }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    #editPage {
+        -ms-grid-columns: 1fr 1px 1px;
+    }
+
+    #previewArea {
+        display: none;
+    }
+}

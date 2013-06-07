@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript">
+            (function () {
+                "use strict";
+                var page = WinJS.UI.Pages.define("/fragments/listmaster-edit-item.html", {
+                    ready: function (element, options) {
+                        var item = ListMaster.currentList.selectSingleNode("/list/categories/category/items/item[@id=" + options.itemID + "]")
+
+                        var control = document.querySelector("#editListItem-1");
+                        control.setAttribute("id", "editListItem" + options.itemID);
+                        if (selectedItemID == options.itemID) {
+                            control.setAttribute("class", control.attributes.getNamedItem("class").value + " itemSelected");
+                        }
+
+                        var control = document.querySelector("#editItemSection-1");
+                        control.setAttribute("id", "editItemSection" + options.itemID);
+
+                        var control = document.querySelector("#editItemContent-1");
+                        control.setAttribute("id", "editItemContent" + options.itemID);
+
+                        var control = document.querySelector("#editListStates-1");
+                        control.setAttribute("id", "editListStates" + options.itemID);
+
+                        var control = document.querySelector("#editItemOrder-1");
+                        control.setAttribute("id", "editItemOrder" + options.itemID);
+                        control.addEventListener("click", doGotFocus, false);
+
+                        var control = document.querySelector("#imgEditItemOrder-1");
+                        control.setAttribute("id", "imgEditItemOrder" + options.itemID);
+                        control.innerText = item.attributes.getNamedItem("order").value;
+
+                        var control = document.querySelector("#editItemTitle-1");
+                        control.setAttribute("id", "editItemTitle" + options.itemID);
+                        control.style.width = "100%";
+                        control.value = item.attributes.getNamedItem("title").value;
+                        control.addEventListener("focus", doGotFocus, false);
+                        control.addEventListener("blur", doOnBlur, false);
+
+                        var control = document.querySelector("#editItemDescriptionVisibility-1");
+                        control.setAttribute("id", "editItemDescriptionVisibility" + options.itemID);
+                        control.winControl.checked = (item.selectSingleNode("description").attributes.getNamedItem("visibility").value == "visible");
+
+                        var control = document.querySelector("#editItemDescription-1");
+                        control.setAttribute("id", "editItemDescription" + options.itemID);
+                        if (item.selectSingleNode("description").attributes.getNamedItem("visibility").value == "hidden") {
+                            control.style.display = "none";
+                        }
+                        control.innerHTML = item.selectSingleNode("description").innerText;
+                        control.contentEditable = true;
+                        control.addEventListener("focus", doGotFocus, false);
+                        control.addEventListener("blur", doOnBlur, false);
+
+                        var control = document.querySelector("#editItemSelected-1");
+                        control.setAttribute("id", "editItemSelected" + options.itemID);
+                        control.innerText = WinJS.UI._SELECTION_CHECKMARK
+                        if (selectedItemID == options.itemID) {
+                            control.style.display = "block";
+                        }
+
+                        var control = document.querySelector("#editStateAdd-1");
+                        control.setAttribute("id", "editStateAdd" + options.itemID);
+                        control.addEventListener("click", doAddState, false);
+
+                        var control = document.querySelector("#imgStateAdd-1");
+                        control.setAttribute("id", "imgStateAdd" + options.itemID);
+                        control.innerText = "\uE109";
+
+                        var control = document.querySelector("#editStateDelete-1");
+                        control.setAttribute("id", "editStateDelete" + options.itemID);
+                        control.addEventListener("click", doDelState, false);
+
+                        var control = document.querySelector("#imgStateDelete-1");
+                        control.setAttribute("id", "imgStateDelete" + options.itemID);
+                        control.innerText = "\uE108";
+
+                        // now we need to process the state data for the item
+                        var stateContent = document.getElementById("editListStates" + options.itemID);
+                        var itemStates = ListMaster.currentList.selectNodes("/list/categories/category/items/item[@id=" + options.itemID + "]/states/state");
+
+                        for (var s = 0; s < itemStates.length; s++) {
+                            var stateOrder = itemStates[s].attributes.getNamedItem("order").value;
+
+                            var stateElement = document.createElement("input");
+                            stateElement.setAttribute("id", "editListState" + options.itemID + "-" + stateOrder);
+                            stateElement.setAttribute("class", "editListState");
+                            stateElement.setAttribute("type", "checkbox");
+                            stateElement.setAttribute("tabindex", "-1");
+                            stateContent.appendChild(stateElement);
+                            stateElement.addEventListener("click", toggleState, false);
+
+                            if (itemStates[s].attributes.getNamedItem("checked").value == "true") {
+                                stateElement.checked = true;
+                            }
+                       }
+                    }
+                });
+            })();
+        </script>
+    </head>
+    <body>
+        <div id="editListItem-1" class="editListItem">
+            <div id="editItemSection-1" class="sectionHeader editItemSection">
+                <button id="editItemOrder-1" class='win-command' type='button' tabindex="-1">
+                    <span tabindex='-1' class='win-commandicon win-commandring'>
+                        <span id="imgEditItemOrder-1" tabindex='-1' class='win-commandimage'></span>
+                    </span>
+                </button>
+            </div>
+            <input type="text" class="editItemTitle" id="editItemTitle-1" />
+            <div id="editItemDescriptionVisibility-1" class="editItemDescriptionVisibility" data-win-control="WinJS.UI.ToggleSwitch" data-win-options="{title: 'Description', labelOn: 'Show', labelOff: 'Hide', onchange: toggleDescription}" ></div>
+            <div id="editItemDescription-1" class="editItemDescription editable"></div>
+            <div id="editItemSelected-1" class="editItemSelected"></div>
+            <div class="editItemContent" id="editItemContent-1">
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="width: 220px;">
+                            <button id="editStateAdd-1" class='win-command' type='button' tabindex="-1">
+                                <span tabindex='-1' class='win-commandicon win-commandring'>
+                                    <span id="imgStateAdd-1" tabindex='-1' class='win-commandimage'>+</span>
+                                </span>
+                            </button>
+                            <button id="editStateDelete-1" class='win-command' type='button' tabindex="-1">
+                                <span tabindex='-1' class='win-commandicon win-commandring'>
+                                    <span id="imgStateDelete-1" tabindex='-1' class='win-commandimage'>&E108;</span>
+                                </span>
+                            </button>
+                        </td>
+                        <td>
+                            <div id="editListStates-1" class="editListStates" style="float: right;">
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

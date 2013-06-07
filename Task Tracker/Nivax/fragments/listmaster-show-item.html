@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript">
+            (function () {
+                "use strict";
+                var page = WinJS.UI.Pages.define("/fragments/listmaster-show-item.html", {
+                    ready: function (element, options) {
+                        var item = ListMaster.currentList.selectSingleNode("/list/categories/category/items/item[@id=" + options.itemID + "]")
+
+                        var control = document.querySelector("#showListItem-1");
+                        control.setAttribute("id", "showListItem" + options.itemID);
+
+                        var control = document.querySelector("#showItemTitle-1");
+                        control.setAttribute("id", "showItemTitle" + options.itemID);
+                        control.innerText = item.attributes.getNamedItem("title").value;
+
+                        var control = document.querySelector("#showItemDescription-1");
+                        control.setAttribute("id", "showItemDescription" + options.itemID);
+                        if (item.selectSingleNode("description").attributes.getNamedItem("visibility").value == "hidden") {
+                            control.style.display = "none";
+                        }
+                        control.innerHTML = item.selectSingleNode("description").innerText;
+
+                        var control = document.querySelector("#showItemContent-1");
+                        control.setAttribute("id", "showItemContent" + options.itemID);
+
+                        var control = document.querySelector("#showListStates-1");
+                        control.setAttribute("id", "showListStates" + options.itemID);
+
+                        // now we need to process the state data for the item
+                        var stateContent = document.getElementById("showListStates" + options.itemID);
+                        var itemStates = ListMaster.currentList.selectNodes("/list/categories/category/items/item[@id=" + options.itemID + "]/states/state");
+
+                        if (itemStates.length > 2) {
+                            // there are more than 3 states in this item so need to call the setStateLayout function to 
+                            // position this in case the display is set to snapped
+                            setStateLayout(options.previewMode, document.querySelector("#showItemContent" + options.itemID));
+                        }
+
+                        for (var s = 0; s < itemStates.length; s++) {
+                            var stateOrder = itemStates[s].attributes.getNamedItem("order").value;
+
+                            var stateElement = document.createElement("input");
+                            stateElement.setAttribute("id", "showListState" + options.itemID + "-" + stateOrder);
+                            stateElement.setAttribute("class", "showListState");
+                            stateElement.setAttribute("type", "checkbox");
+                            stateContent.appendChild(stateElement);
+
+                            if (itemStates[s].attributes.getNamedItem("checked").value == "true") {
+                                stateElement.checked = true;
+                            }
+                            if (!options.previewMode) {
+                                stateElement.addEventListener("click", show_toggleItemState, false);
+                            }
+                        }
+
+                    }
+                });
+            })();
+        </script>
+    </head>
+    <body>
+        <div class="showListItem" id="showListItem-1">
+            <div class="showItemTitle win-type-large" id="showItemTitle-1"></div>
+            <div class="showItemDescription" id="showItemDescription-1"></div>
+            <div class="showItemContent" id="showItemContent-1">
+                <div class="showListStates" id="showListStates-1">
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

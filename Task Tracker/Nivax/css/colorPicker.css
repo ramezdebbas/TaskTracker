@@ -1,0 +1,22 @@
+﻿#colorPicker input[type=range] {
+    margin: 0;
+    padding: 10px;
+    width: 160px;
+}
+
+#color-Hex {
+    width: 80px;
+    margin-left: 10px;
+}
+
+#color-Sample {
+    border: 2px solid white;
+    width: 60px;
+    background-color: #808080;
+}
+
+#colorPicker button {
+    float: right;
+    margin-top: 10px;
+}
+

@@ -1,0 +1,11 @@
+﻿body {
+    color: #ffffff;
+}
+
+.showCategoryDescription, .showCategoryContent {
+    background-color: rgba(255,255,255,0.8);
+}
+
+.showCategoryOrder:hover {
+    background-color: rgba(255,255,255, 0.4);
+}
